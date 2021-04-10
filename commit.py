@@ -6,10 +6,10 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 subprocess.run(args=('wsl', 'git', 'add', '--all'))
 subprocess.run(args=('wsl', 'git', 'commit', '-m', str(uuid4())))
-# subprocess.run(args=('wsl', 'git', 'push'))
-# os.system('wsl git push')
+subprocess.run(args=('wsl', 'git', 'push'))
+subprocess.run(args=('wsl', 'git', 'gc'))
+
 commit_hash = subprocess.run(
     args=('wsl', 'git', 'rev-parse', 'HEAD'),
-    capture_output=True).stdout.decode()
+    capture_output=True).stdout.decode().strip()
 input('https://cdn.jsdelivr.net/gh/PetrichorA/page-8ea76ac5@{}/'.format(commit_hash))
-# os.system('wsl git gc')
