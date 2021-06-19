@@ -9,7 +9,6 @@ subprocess.run(args=('wsl', 'git', 'commit', '-m', str(uuid4())))
 subprocess.run(args=('wsl', 'git', 'push'))
 subprocess.run(args=('wsl', 'git', 'gc'))
 
-commit_hash = subprocess.run(
-    args=('wsl', 'git', 'rev-parse', 'HEAD'),
-    capture_output=True).stdout.decode().strip()
+commit_hash = subprocess.check_output(
+    args=('wsl', 'git', 'rev-parse', 'HEAD')).decode().strip()
 input('https://cdn.jsdelivr.net/gh/PetrichorA/page-8ea76ac5@{}/'.format(commit_hash))
